@@ -7,30 +7,28 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./css/Nav.module.css";
 
-const Nav = ({userMenuColor, navIndex, setNavIndex}) => {
+const Nav = ({ userMenuColor, navIndex, setNavIndex }) => {
   const navigate = useNavigate();
   const navItem = ["men", "women", "accessory"];
-
   const menu = useRef();
   const hamburger = useRef();
   const user = useRef();
 
   const onClickNav = (navName, i) => () => {
+    if (hamburger.current) {
+      hamburger.current.classList.remove(`${styles.active}`);
+      menu.current.classList.remove(`${styles.active}`);
+    }
     setNavIndex(i);
-    // 햄버거 접기
     hamburger.current.classList.remove(`${styles.active}`);
-    // navigate(`/${navName}`);
-  }
-  // 햄버거열기
-  function click(e) {
-    e.classList.toggle(`${styles.active}`);
+    setTimeout(() => {navigate(`/${navName}`)}, 500);
+  };
+
+  const onClickHamburger = (target) => {
+    target.classList.toggle(`${styles.active}`);
     menu.current.classList.toggle(`${styles.active}`);
-  }
-  // 햄버거 접기
-  function close() {
-    hamburger.current.classList.remove(`${styles.active}`);
-    menu.current.classList.remove(`${styles.active}`);
-  }
+  };
+  
   return (
     <>
       <nav className={styles.nav}>
@@ -39,8 +37,9 @@ const Nav = ({userMenuColor, navIndex, setNavIndex}) => {
             <h1
               className={styles.logo}
               onClick={() => {
-                navigate("/");
                 setNavIndex("");
+                // navigate(`/`);
+                setTimeout(() => {navigate(`/`)}, 400);
               }}
             >
               Cozy
@@ -60,13 +59,13 @@ const Nav = ({userMenuColor, navIndex, setNavIndex}) => {
             </ul>
           </div>
           <div className={styles.user}>
-            <ul ref={user} className={`${styles[userMenuColor]}`}>
-              <li className={styles.login_btn}>Login</li>
-              <li className={styles.cart_icon}>Cart</li>
+            <ul ref={user} className={navIndex !== "" ? `${styles.white}` : `${styles.black}`}>
+              <li>Login</li>
+              <li>Cart</li>
               <li
                 className={styles.hamburger}
                 onClick={(e) => {
-                  click(e.currentTarget);
+                  onClickHamburger(e.currentTarget);
                 }}
                 ref={hamburger}
               >

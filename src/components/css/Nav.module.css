@@ -71,11 +71,16 @@
 .user ul {
   display: flex;
   margin-top: 10px;
-  color: #191919;
+  transition: color .3s ease-in-out;
+
 }
 
 .user ul.white {
   color: #fff;
+}
+
+.user ul.black {
+  color: #191919;
 }
 
 .user ul.active {
@@ -188,7 +193,19 @@
     display: block;
   }
 
+  .menu ul li:hover {
+    color: #B89FA4;
+  }
+
+  .menu ul li::before {
+    display: none;
+  }
+
   .hamburger {
     display: block;
+  }
+
+  .hamburger::before {
+    display: none;
   }
 }

@@ -2,31 +2,20 @@ import React, { useEffect, useState } from "react";
 import styles from "./css/Men.module.css";
 import axios from "axios";
 
-const Men = (props) => {
+const Men = ({navIndex}) => {
+  const [unmountTransition, setUnmountTransition] = useState("");
   const [products, setProducts] = useState();
-
   useEffect(() => {
-    props.setNavIndex(0);
-    getData();
-  }, []);
-
-  useEffect(() => {
-    props.setUserColor("white");
-  });
-
-  // 데이터 받아오기
-  function getData(index){
-    fetch(`https://raquim47.github.io/data/cozy/json/men.json`)
-      .then(res => res.json())
-      .then(data => {
-        setProducts(data);
-      })
-  }
+    navIndex === "" && setUnmountTransition("unmount");
+  }, [navIndex]);
   
-  console.log(products);
+  useEffect(() => {
+    axios.get(`https://raquim47.github.io/data/cozy/json/m_top.json`).then(res => setProducts(res.data));
+  }, [])
+  
   return (
     <div className={styles.men}>
-      <div className={styles.men_cover}></div>
+      <div className={`${styles.men_cover} ${styles[unmountTransition]}`}></div>
       <div className={styles.container}>
         <h2>MEN</h2>
         <ul className={styles.tab_menu}>
@@ -36,7 +25,7 @@ const Men = (props) => {
         </ul>
         <div className={styles.condition}>
           <div className={styles.total}>
-            TOTAL <span>30</span>
+            TOTAL <span>{products.length}</span>
           </div>
           <ul className={styles.option}>
             <li className={styles.active}>NEWEST</li>
@@ -56,14 +45,11 @@ const Men = (props) => {
                       // dispatch(addDetailData(item));
                     }}
                   >
-                    <div className={styles.item}>
                       <div className={styles.item_img}>
                         <img src={item.url} alt="" />
                       </div>
-                      <em>{item.filter}</em>
                       <h3>{item.title}</h3>
                       <strong>$ {item.price}</strong>
-                    </div>
                   </li>
                 );
               })}

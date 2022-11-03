@@ -1,22 +1,69 @@
 import React, { useEffect, useRef, useState } from "react";
-import Banner from "../components/Banner";
+import styles from "./css/Main.module.css";
 
-const Main = (props) => {
-  // 첫로드시 1회
+const Main = ({ navIndex }) => {
+  const [mountTransition, setMountTransition] = useState("");
+  const [unmountTransition, setUnmountTransition] = useState("");
+
   useEffect(() => {
-    props.setNavIndex("");
+    setTimeout(() => {
+      // 메인 애니메이션 실행
+      setMountTransition("active");
+    }, 50)// 50ms 왜??
   }, []);
-  // 렌더링 될 때마다
+
   useEffect(() => {
-    props.setUserMenuColor("");
-    props.setUnmount(false);
-  });
+    navIndex !== "" && setUnmountTransition("unmount");
+  }, [navIndex]);
 
   return (
-    <>
-      <Banner unmount={props.unmount} />
-    </>
+    <div className={styles.banner}>
+      <div
+        className={`${styles.banner_cover} ${styles[unmountTransition]}`}
+      ></div>
+      <div className={styles.banner_left}>
+        <div
+          className={`${styles.banner_left__bg} ${styles[mountTransition]}`}
+        ></div>
+        <div
+          className={`${styles.banner_left__img} ${styles[mountTransition]}`}
+        >
+          <img src={process.env.PUBLIC_URL + "img/banner01.jpg"} />
+        </div>
+        <div
+          className={`${styles.banner_left__textbox} ${styles[mountTransition]}`}
+        >
+          <h2>
+            Actuality
+            <br />
+            Trends
+            <br />
+            <small>Cozy Fall 2022</small>
+          </h2>
+          <div className={styles.banner_left__desc}>
+            <span>
+              The Cozy Architectural collection is everything a businesswoman
+              could wish for. It knows no trends or seasons, making it a sleek,
+              refined.
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className={styles.banner_right}>
+        <img
+          src={process.env.PUBLIC_URL + "img/banner02.jpg"}
+          className={`${styles[mountTransition]}`}
+        />
+        <img
+          src={process.env.PUBLIC_URL + "img/banner03.jpg"}
+          className={`${styles[mountTransition]}`}
+        />
+        <img
+          src={process.env.PUBLIC_URL + "img/banner04.jpg"}
+          className={`${styles[mountTransition]}`}
+        />
+      </div>
+    </div>
   );
 };
-
 export default Main;
