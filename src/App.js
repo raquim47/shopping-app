@@ -6,6 +6,7 @@ import "./reset.css";
 import Main from "./routes/Main";
 import Men from "./routes/Men";
 import Women from "./routes/Women";
+import Detail from "./routes/Detail";
 // component
 import Nav from "./components/Nav";
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Main navIndex={navIndex}/>}></Route>
         <Route path="/men" element={<Men navIndex={navIndex} setNavIndex={setNavIndex} />}></Route>
         <Route path="/women" element={<Women navIndex={navIndex} setNavIndex={setNavIndex} />}></Route>
+        <Route path="/detail" element={<Detail/>}></Route>
       </Routes>
     </div>
   );

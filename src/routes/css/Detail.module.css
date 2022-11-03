@@ -1,0 +1,28 @@
+.detail {
+  display: flex;
+  height: 100vh;
+  padding-top: 70px;
+  background: #b89fa4;
+  font-family: "Playfair Display SC", serif;
+  color: #fff;
+}
+
+.detail_img {
+  width: 50%;
+  height: 100%;
+  background-color: blue;
+}
+
+.detail_order {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  border: 1px solid red;
+}
+
+.detail_order form {
+  height: 480px;
+  width: 70%;
+  background: #a18e93;
+}

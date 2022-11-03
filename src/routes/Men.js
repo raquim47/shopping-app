@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "./css/Men.module.css";
 import axios from "axios";
+import { setDetailInfo } from "./../store";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Men = ({ navIndex, setNavIndex }) => {
+  const detailInfo = useSelector(state => state.detailInfo);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [unmountTransition, setUnmountTransition] = useState("");
   const [products, setProducts] = useState([]);
   const tab = ["top", "pants", "outwear"];
@@ -94,19 +100,26 @@ const Men = ({ navIndex, setNavIndex }) => {
         <ul className={styles.products}>
           <ul>
             {products &&
-              products.map((item, index) => (
+              products.map((product) => (
                 <li
-                  key={index}
+                  key={product.id}
                   onClick={() => {
-                    // navigate(`/Detail/${item.id}`);
-                    // dispatch(addDetailData(item));
+                    const data = {
+                      title: product.title,
+                      price: product.price,
+                      url: product.url,
+                      size: product.size,
+                    }
+                    dispatch(setDetailInfo(data));
+                    console.log(detailInfo);
+                    navigate(`/Detail`);
                   }}
                 >
-                  <div className={styles.item_img}>
-                    <img src={item.url} alt="" />
+                  <div className={styles.product_img}>
+                    <img src={product.url} alt="" />
                   </div>
-                  <h3>{item.title}</h3>
-                  <strong>$ {item.price}</strong>
+                  <h3>{product.title}</h3>
+                  <strong>$ {product.price}</strong>
                 </li>
               ))}
           </ul>
