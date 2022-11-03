@@ -7,9 +7,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./css/Nav.module.css";
 
-const Nav = ({ userMenuColor, navIndex, setNavIndex }) => {
+const Nav = ({ navIndex, setNavIndex }) => {
   const navigate = useNavigate();
-  const navItem = ["men", "women", "accessory"];
+  const navItem = ["men", "women"];
   const menu = useRef();
   const hamburger = useRef();
   const user = useRef();
@@ -37,8 +37,7 @@ const Nav = ({ userMenuColor, navIndex, setNavIndex }) => {
             <h1
               className={styles.logo}
               onClick={() => {
-                setNavIndex("");
-                // navigate(`/`);
+                setNavIndex(-1);
                 setTimeout(() => {navigate(`/`)}, 400);
               }}
             >

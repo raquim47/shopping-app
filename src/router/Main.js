@@ -13,7 +13,7 @@ const Main = ({ navIndex }) => {
   }, []);
 
   useEffect(() => {
-    navIndex !== "" && setUnmountTransition("unmount");
+    (navIndex !== "" && navIndex !== -1) && setUnmountTransition("unmount");
   }, [navIndex]);
 
   return (
@@ -45,7 +45,8 @@ const Main = ({ navIndex }) => {
               The Cozy Architectural collection is everything a businesswoman
               could wish for. It knows no trends or seasons, making it a sleek,
               refined.
-            </span>
+            </span><br/>
+            <small>Copyright by Hong</small>
           </div>
         </div>
       </div>

@@ -9,14 +9,14 @@ import Men from "./router/Men";
 import Nav from "./components/Nav";
 
 function App() {
-  const [userMenuColor,setUserMenuColor] = useState("");
   const [navIndex, setNavIndex] = useState("");
+  console.log(navIndex)
   return (
     <div className="App">
       <Nav navIndex={navIndex} setNavIndex={setNavIndex}/>
       <Routes>
         <Route path="/" element={<Main navIndex={navIndex}/>}></Route>
-        <Route path="/men" element={<Men navIndex={navIndex}/>}></Route>
+        <Route path="/men" element={<Men navIndex={navIndex} setNavIndex={setNavIndex} />}></Route>
       </Routes>
     </div>
   );
