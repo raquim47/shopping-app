@@ -1,0 +1,42 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 33.33%;
+  height: 500px;
+  cursor: pointer;
+}
+
+.list__img {
+  width: 90%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.list__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: .3s ease;
+}
+
+.list li:hover .product_img img {
+  transform: scale(1.15);
+}
+
+.list h3 {
+  margin: 10px 0 0px;
+  width: 90%;
+  text-align: center;
+  font-size: 18px;
+}
+
+.list strong {
+  font-size: 18px;
+}

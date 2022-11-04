@@ -1,0 +1,28 @@
+.tab {
+  display: flex;
+}
+
+.tab li {
+  position: relative;
+  margin-right: 30px;
+  font-size: 32px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.tab li::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background: #fff;
+  transition: .3s;
+}
+.tab li.active::before,
+.tab li:hover::before {
+  left: 0%;
+  width: 100%;
+}

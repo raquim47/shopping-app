@@ -1,0 +1,15 @@
+.arrange {
+  display: flex;
+}
+
+.arrange li {
+  margin-left: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.arrange li:hover,
+.arrange li.active {
+  color: #fff
+}
