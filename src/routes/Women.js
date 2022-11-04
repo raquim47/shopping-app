@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from "react";
-import styles from "./css/Men.module.css";
+import styles from "./css/MenWomen.module.css";
 import axios from "axios";
+import Tab from "./../components/Tab";
+import Arrange from "./../components/Arrange";
+import List from "./../components/List";
 
-const Women = ({ navIndex, setNavIndex }) => {
+const Women = ({ page, setPage }) => {
   const [unmountTransition, setUnmountTransition] = useState("");
   const [products, setProducts] = useState([]);
-  const tab = ["top", "pants", "outwear", "accessory"];
-  const [clickedTab, setClickedTab] = useState("top");
-  const option = ["NEWEST", "LOW PRICE", "HIGH PRICE"];
-  const [clickedOption, setClickedOption] = useState("NEWEST");
+  const tabList = ["top", "pants", "outwear", "accessory"];
+  const [clickedTab, setClickedTab] = useState(tabList[0]);
+  
+  useEffect(() => {
+    if (page !== "women") {
+      setPage("women");
+    }
+  }, []);
 
   useEffect(() => {
-    if (navIndex === -1) {
+    if (page === "main") {
       setUnmountTransition("white-cover");
-    } else if (navIndex === 2) {
-      
+    } else if (page === "men") {
+      setUnmountTransition("purple-cover")
     }
-  }, [navIndex]);
-  
+  }, [page]);
+
   useEffect(() => {
     if (clickedTab === "top") {
       axios
@@ -38,85 +45,19 @@ const Women = ({ navIndex, setNavIndex }) => {
     }
   }, [clickedTab]);
 
-  useEffect(() => {
-    if (navIndex === -1) {
-      setUnmountTransition("white-cover");
-    } else if (navIndex === 0) {
-      setUnmountTransition("purple-cover");
-    }
-  }, [navIndex]);
-
-  const onClickOption = (opName) => {
-    setClickedOption(opName);
-    const newProducts = [...products];
-    if (opName === "NEWEST") {
-      newProducts.sort((a, b) => (a.id > b.id ? -1 : 1));
-    } else if (opName === "LOW PRICE") {
-      newProducts.sort((a, b) => (a.price < b.price ? -1 : 1));
-    } else if (opName === "HIGH PRICE") {
-      newProducts.sort((a, b) => (a.price > b.price ? -1 : 1));
-    }
-    setProducts(newProducts);
-  };
-
-  const onClickTab = (tabName) => {
-    setClickedTab(tabName);
-    onClickOption("NEWEST");
-  };
   return (
-    <div className={styles.men}>
-      <div className={`${styles.men_cover} ${styles[unmountTransition]}`}></div>
-      <div className={styles.container}>
+    <div className={styles.products}>
+      <div className={`${styles.products__cover} ${styles[unmountTransition]}`}></div>
+      <div className={styles.products__inner}>
         <h2>WOMEN</h2>
-        <ul className={styles.tab_menu}>
-          {tab.map((tabName, i) => {
-            return (
-              <li
-                onClick={() => onClickTab(tabName)}
-                className={clickedTab === tabName ? styles.active : null}
-                key={tabName}
-              >
-                {tabName}
-              </li>
-            );
-          })}
-        </ul>
-        <div className={styles.condition}>
+        <Tab tabList={tabList} clickedTab={clickedTab} setClickedTab={setClickedTab}/>
+        <div className={styles.products__option}>
           <div className={styles.total}>
             TOTAL <span>{products.length}</span>
           </div>
-          <ul className={styles.option}>
-            {option.map((opName) => (
-              <li
-                onClick={() => onClickOption(opName)}
-                className={clickedOption === opName ? styles.active : null}
-                key={opName}
-              >
-                {opName}
-              </li>
-            ))}
-          </ul>
+          <Arrange products={products} setProducts={setProducts} clickedTab={clickedTab}/>
         </div>
-        <ul className={styles.products}>
-          <ul>
-            {products &&
-              products.map((item, index) => (
-                <li
-                  key={index}
-                  onClick={() => {
-                    // navigate(`/Detail/${item.id}`);
-                    // dispatch(addDetailData(item));
-                  }}
-                >
-                  <div className={styles.item_img}>
-                    <img src={item.url} alt="" />
-                  </div>
-                  <h3>{item.title}</h3>
-                  <strong>$ {item.price}</strong>
-                </li>
-              ))}
-          </ul>
-        </ul>
+        <List products={products}/>
       </div>
     </div>
   );

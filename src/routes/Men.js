@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
-import styles from "./css/Men.module.css";
+import styles from "./css/MenWomen.module.css";
 import axios from "axios";
-import { setDetailInfo } from "./../store";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import Tab from "./../components/Tab";
 import Arrange from "./../components/Arrange";
 import List from "./../components/List";
-const Men = ({ navIndex, setNavIndex }) => {
-  const detailInfo = useSelector(state => state.detailInfo);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+const Men = ({ page, setPage }) => {
   const [unmountTransition, setUnmountTransition] = useState("");
   const [products, setProducts] = useState([]);
   const tabList = ["top", "pants", "outwear"];
   const [clickedTab, setClickedTab] = useState(tabList[0]);
+  
   useEffect(() => {
-    if (navIndex !== 0) {
-      setNavIndex(0);
+    if (page !== "men") {
+      setPage("men");
     }
   }, []);
+
+  useEffect(() => {
+    if (page === "main") {
+      setUnmountTransition("white-cover");
+    } else if (page === "women") {
+      setUnmountTransition("purple-cover")
+    }
+  }, [page]);
 
   useEffect(() => {
     if (clickedTab === "top") {
@@ -37,21 +40,13 @@ const Men = ({ navIndex, setNavIndex }) => {
     }
   }, [clickedTab]);
 
-  useEffect(() => {
-    if (navIndex === -1) {
-      setUnmountTransition("white-cover");
-    } else if (navIndex === 1) {
-      setUnmountTransition("purple-cover")
-    }
-  }, [navIndex]);
-
   return (
-    <div className={styles.men}>
-      <div className={`${styles.men_cover} ${styles[unmountTransition]}`}></div>
-      <div className={styles.container}>
+    <div className={styles.products}>
+      <div className={`${styles.products__cover} ${styles[unmountTransition]}`}></div>
+      <div className={styles.products__inner}>
         <h2>MEN</h2>
         <Tab tabList={tabList} clickedTab={clickedTab} setClickedTab={setClickedTab}/>
-        <div className={styles.condition}>
+        <div className={styles.products__option}>
           <div className={styles.total}>
             TOTAL <span>{products.length}</span>
           </div>

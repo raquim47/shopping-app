@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./css/Main.module.css";
 
-const Main = ({ navIndex }) => {
+const Main = ({ page }) => {
   const [mountTransition, setMountTransition] = useState("");
   const [unmountTransition, setUnmountTransition] = useState("");
 
@@ -13,8 +13,8 @@ const Main = ({ navIndex }) => {
   }, []);
 
   useEffect(() => {
-    (navIndex !== "" && navIndex !== -1) && setUnmountTransition("unmount");
-  }, [navIndex]);
+    (page !== "main") && setUnmountTransition("unmount");
+  }, [page]);
 
   return (
     <div className={styles.banner}>

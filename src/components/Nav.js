@@ -7,19 +7,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./css/Nav.module.css";
 
-const Nav = ({ navIndex, setNavIndex }) => {
+const Nav = ({ page, setPage }) => {
   const navigate = useNavigate();
-  const navItem = ["men", "women"];
+  const mainMenuList = ["men", "women"];
   const menu = useRef();
   const hamburger = useRef();
   const user = useRef();
 
-  const onClickNav = (navName, i) => () => {
+  const onClickMainMenu = (navName) => () => {
     if (hamburger.current) {
       hamburger.current.classList.remove(`${styles.active}`);
       menu.current.classList.remove(`${styles.active}`);
     }
-    setNavIndex(i);
+    setPage(navName);
     hamburger.current.classList.remove(`${styles.active}`);
     setTimeout(() => {navigate(`/${navName}`)}, 500);
   };
@@ -32,33 +32,33 @@ const Nav = ({ navIndex, setNavIndex }) => {
   return (
     <>
       <nav className={styles.nav}>
-        <div className={styles.container}>
-          <div className={styles.menu} ref={menu}>
+        <div className={styles.nav__inner}>
+          <div className={styles.nav__left}>
             <h1
               className={styles.logo}
               onClick={() => {
-                setNavIndex(-1);
+                setPage("main");
                 setTimeout(() => {navigate(`/`)}, 400);
               }}
             >
               Cozy
             </h1>
-            <ul>
-              {navItem.map((navName, i) => {
+            <ul className={styles.main_menu} ref={menu}>
+              {mainMenuList.map((mainMenuItem) => {
                 return (
                   <li
-                    key={(navName, i)}
-                    onClick={onClickNav(navName, i)}
-                    className={navIndex === i ? `${styles.active}` : null}
+                    key={(mainMenuItem)}
+                    onClick={onClickMainMenu(mainMenuItem)}
+                    className={page === mainMenuItem ? `${styles.active}` : null}
                   >
-                    {navName}
+                    {mainMenuItem}
                   </li>
                 );
               })}
             </ul>
           </div>
-          <div className={styles.user}>
-            <ul ref={user} className={navIndex !== "" ? `${styles.white}` : `${styles.black}`}>
+          <div className={styles.user_menu}>
+            <ul ref={user} className={page === "main" ? `${styles.black}` : `${styles.white}`}>
               <li>Login</li>
               <li>Cart</li>
               <li

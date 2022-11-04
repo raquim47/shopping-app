@@ -9,7 +9,7 @@
   backdrop-filter: blur(8px);
 }
 
-.container {
+.nav__inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,12 +20,6 @@
   padding: 0 30px;
 }
 
-.menu {
-  display: flex;
-  align-items: center;
-  
-}
-
 .logo {
   margin-right: 45px;
   font-size: 40px;
@@ -34,14 +28,19 @@
   color: #fff;
 }
 
+.nav__left {
+  display: flex;
+  align-items: center;
+}
+
 /* menu */
-.menu ul {
+.main_menu {
   display: flex;
   color: #fff;
   margin-top: 10px;
 }
 
-.menu ul li {
+.main_menu li {
   position: relative;
   padding: 5px 0; 
   margin: 0 15px;
@@ -50,7 +49,7 @@
   cursor: pointer;
 }
 
-.menu ul li::before {
+.main_menu li::before {
   position: absolute;
   bottom: 5px;
   left: 50%;
@@ -61,40 +60,40 @@
   content: "";
 } 
 
-.menu ul li:hover::before,
-.menu ul li.active::before {
+.main_menu li:hover::before,
+.main_menu li.active::before {
   left: 0;
   width: 100%;
 }
 
 /* user */
-.user ul {
+.user_menu ul {
   display: flex;
   margin-top: 10px;
   transition: color .3s ease-in-out;
 
 }
 
-.user ul.white {
+.user_menu ul.white {
   color: #fff;
 }
 
-.user ul.black {
+.user_menu ul.black {
   color: #191919;
 }
 
-.user ul.active {
+.user_menu ul.active {
   /* color: #fff; */
 }
 
-.user ul li {
+.user_menu ul li {
   position: relative;
   margin-left: 30px;
   cursor: pointer;
   padding: 5px 0;
 }
 
-.user ul li::before {
+.user_menu ul li::before {
   position: absolute;
   bottom: 5px;
   left: 50%;
@@ -105,7 +104,7 @@
   content: "";
 } 
 
-.user ul li:hover::before {
+.user_menu ul li:hover::before {
   left: 0;
   width: 100%;
 }
@@ -154,7 +153,7 @@
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 @media (max-width:900px) {
-  .user ul li {
+  .user_menu ul li {
     color: #fff;
   }
 }
@@ -162,7 +161,7 @@
   .nav {
     backdrop-filter: blur(10px);
   }
-  .menu ul {
+  .main_menu {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -179,25 +178,25 @@
     z-index: 9999;
   }
 
-  .menu.active ul {
+  .main_menu.active{
     height: 200px;
   }
 
-  .menu ul li:nth-child(1) {
+  .main_menu li:nth-child(1) {
     display: block;
   }
 
-  .menu ul li {
+  .main_menu li {
     font-size: 18px;
     padding: 10px;
     display: block;
   }
 
-  .menu ul li:hover {
+  .main_menu li:hover {
     color: #B89FA4;
   }
 
-  .menu ul li::before {
+  .main_menu li::before {
     display: none;
   }
 

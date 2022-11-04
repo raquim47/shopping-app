@@ -1,0 +1,50 @@
+.products {
+  background: #b89fa4;
+  font-family: "Playfair Display SC", serif;
+  color: #fff;
+}
+
+.products__cover {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 0%;
+  height: 100vh;
+  transition: .4s ease-in-out;
+  z-index: 100;
+}
+
+.products__cover.white-cover {
+  width: 100%;
+  background: #fff;
+}
+
+.products__cover.purple-cover {
+  width: 100%;
+  background: #B89FA4;
+}
+
+.products__inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 100px 30px 0;
+}
+
+.products h2 {
+  font-size: 100px;
+  font-weight: 600;
+}
+
+.products__option {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  font-weight: 600;
+  padding-bottom: 15px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+.total span {
+  font-family: "roboto";
+}

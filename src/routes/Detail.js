@@ -3,13 +3,14 @@ import styles from "./css/Detail.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const Detail = () => {
+const Detail = ({setPage}) => {
   const detailInfo = useSelector((state) => state.detailInfo);
   const navigate = useNavigate();
   useEffect(() => {
     if (!detailInfo.title) {
       navigate(`/men`);
     }
+    setPage("");
   }, []);
 
   return (
