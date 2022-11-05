@@ -3,8 +3,10 @@ import styles from "./css/Detail.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const Detail = ({setPage}) => {
+const Detail = ({ setPage }) => {
   const detailInfo = useSelector((state) => state.detailInfo);
+  const [count, setCount] = useState(1);
+  const [size, setSize] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     if (!detailInfo.title) {
@@ -13,8 +15,23 @@ const Detail = ({setPage}) => {
     setPage("");
   }, []);
 
+  const increaseCount = () => () => {
+    count ? setCount((prev) => parseInt(prev) + 1) : setCount(1);
+  };
+  const decreaseCount = () => () => {
+    count > 1 && setCount((prev) => parseInt(prev) - 1);
+  };
+
+  const onSubmitBtn = (e) => {
+    e.preventDefault();
+    if (!size || count < 1) {
+      alert("올바른 수량과 사이즈를 선택해주세요");
+      return;
+    }
+    navigate("/cart");
+  };
+
   return (
-    
     <div className={styles.detail}>
       <section className={styles.detail__left}>
         <img src={detailInfo.url}></img>
@@ -22,25 +39,55 @@ const Detail = ({setPage}) => {
       <section className={styles.detail__right}>
         <form className={styles.order_form}>
           <h3>{detailInfo.title}</h3>
-          {/* <div className={styles.order_form__price}>
-            <h4>price</h4>
-            <span>$ {detailInfo.price}</span>
-          </div> */}
-          <div className={styles.order_form__option}>
-            <h4>size</h4>
-            <ul>
-              {detailInfo.size && detailInfo.size.map(size => <li>{size}</li>)}
-            </ul>
-          </div>
+          {detailInfo.size && (
+            <div className={`${styles.order_form__option} ${styles.size}`}>
+              <h4>size</h4>
+              <ul>
+                {detailInfo.size &&
+                  detailInfo.size.map((sizeItem) => (
+                    <li
+                      onClick={() => setSize(sizeItem)}
+                      className={size === sizeItem && styles.active}
+                    >
+                      {sizeItem}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          )}
           <div className={styles.order_form__option}>
             <h4>count</h4>
-            <input className={styles.count_input} type="number" />
+            <div className={styles.count_input}>
+              <input
+                type="text"
+                value={count}
+                onChange={(e) => {
+                  setCount(e.target.value);
+                }}
+              />
+              <div className={styles.count_input__btn}>
+                <div
+                  onClick={increaseCount()}
+                  className={styles.count_input__up}
+                ></div>
+                <div
+                  onClick={decreaseCount()}
+                  className={styles.count_input__down}
+                ></div>
+              </div>
+            </div>
           </div>
-          <div className={styles.order_form__option}>
+          <div className={`${styles.order_form__option} ${styles.price}`}>
             <h4>price</h4>
-            <span>$ {detailInfo.price}</span>
+            <span>$ {count > 0 && detailInfo.price * count}</span>
           </div>
-          <button type="submit" className={styles.order_form__submit_btn}>Add Cart</button>
+          <button
+            type="submit"
+            onClick={(e) => onSubmitBtn(e)}
+            className={styles.order_form__submit_btn}
+          >
+            Add Cart
+          </button>
         </form>
       </section>
     </div>
