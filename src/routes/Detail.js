@@ -12,7 +12,6 @@ const Detail = ({ setPage }) => {
     if (!detailInfo.title) {
       navigate(`/men`);
     }
-    setPage("");
   }, []);
 
   const increaseCount = () => () => {
@@ -49,6 +48,7 @@ const Detail = ({ setPage }) => {
                       <li
                         onClick={() => setSize(sizeItem)}
                         className={size === sizeItem && styles.active}
+                        key={sizeItem}
                       >
                         {sizeItem}
                       </li>
