@@ -13,7 +13,7 @@ const Main = ({ page }) => {
   }, []);
 
   useEffect(() => {
-    (page !== "main") && setUnmountTransition("unmount");
+    (page !== "main" && page !== "") && setUnmountTransition("unmount");
   }, [page]);
 
   return (

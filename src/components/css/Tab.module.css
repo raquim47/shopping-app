@@ -1,11 +1,13 @@
 .tab {
   display: flex;
+  font-family: 'Montserrat';
 }
 
 .tab li {
   position: relative;
   margin-right: 30px;
-  font-size: 32px;
+  font-weight: 600;
+  font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
@@ -14,7 +16,7 @@
 .tab li::before {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 50%;
   width: 0%;
   height: 2px;

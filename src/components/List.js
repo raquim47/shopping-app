@@ -2,13 +2,19 @@ import styles from "./css/List.module.css";
 import { useDispatch } from "react-redux";
 import { setDetailInfo } from "./../store";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const List = ({ products }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [mountTransition, setMountTransition] = useState("");
+  useEffect(() => {
+    setTimeout(() => {
+      setMountTransition("mount");
+    }, 100)
+  }, [])
   return (
-    <ul className={styles.list}>
+    <ul className={`${styles.list} ${styles[mountTransition]}`}>
       {products &&
         products.map((product) => (
           <li
@@ -27,8 +33,10 @@ const List = ({ products }) => {
             <div className={styles.list__img}>
               <img src={product.url} alt="" />
             </div>
-            <h3>{product.title}</h3>
-            <strong>$ {product.price}</strong>
+            <div className={styles.list__desc}>
+              <h3>{product.title}</h3>
+              <small>$ {product.price}</small>
+            </div>
           </li>
         ))}
     </ul>

@@ -9,12 +9,12 @@ import styles from "./css/Nav.module.css";
 
 const Nav = ({ page, setPage }) => {
   const navigate = useNavigate();
-  const mainMenuList = ["men", "women"];
+  const leftMenuList = ["men", "women", "cart"];
   const menu = useRef();
   const hamburger = useRef();
   const user = useRef();
 
-  const onClickMainMenu = (navName) => () => {
+  const onClickLeftMenu = (navName) => () => {
     if (hamburger.current) {
       hamburger.current.classList.remove(`${styles.active}`);
       menu.current.classList.remove(`${styles.active}`);
@@ -43,24 +43,23 @@ const Nav = ({ page, setPage }) => {
             >
               Cozy
             </h1>
-            <ul className={styles.main_menu} ref={menu}>
-              {mainMenuList.map((mainMenuItem) => {
+            <ul className={styles.left_menu} ref={menu}>
+              {leftMenuList.map((leftMenuItem) => {
                 return (
                   <li
-                    key={(mainMenuItem)}
-                    onClick={onClickMainMenu(mainMenuItem)}
-                    className={page === mainMenuItem ? `${styles.active}` : null}
+                    key={(leftMenuItem)}
+                    onClick={onClickLeftMenu(leftMenuItem)}
+                    className={page === leftMenuItem ? `${styles.active}` : null}
                   >
-                    {mainMenuItem}
+                    {leftMenuItem}
                   </li>
                 );
               })}
             </ul>
           </div>
-          <div className={styles.user_menu}>
-            <ul ref={user} className={page === "main" ? `${styles.black}` : `${styles.white}`}>
-              <li>Login</li>
-              <li>Cart</li>
+          <div className={styles.nav__right}>
+            <ul ref={user} className={(page === "main" || page === "") ? `${styles.black}` : `${styles.white}`}>
+              <li>login</li>
               <li
                 className={styles.hamburger}
                 onClick={(e) => {

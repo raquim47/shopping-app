@@ -49,7 +49,6 @@ const Women = ({ page, setPage }) => {
     <div className={styles.products}>
       <div className={`${styles.products__cover} ${styles[unmountTransition]}`}></div>
       <div className={styles.products__inner}>
-        <h2>WOMEN</h2>
         <Tab tabList={tabList} clickedTab={clickedTab} setClickedTab={setClickedTab}/>
         <div className={styles.products__option}>
           <div className={styles.total}>

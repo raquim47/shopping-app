@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       <Nav page={page} setPage={setPage}/>
       <Routes>
-        <Route path="/" element={<Main page={page}/>}></Route>
+        <Route path="/" element={<Main page={page} setPage={setPage}/>}></Route>
         <Route path="/men" element={<Men page={page} setPage={setPage} />}></Route>
         <Route path="/women" element={<Women page={page} setPage={setPage} />}></Route>
         <Route path="/detail" element={<Detail setPage={setPage}/>}></Route>

@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 70px;
-  font-family: 'Playfair Display SC', serif;
+  font-family: 'Montserrat';
   z-index: 9999;
   backdrop-filter: blur(8px);
 }
@@ -33,67 +33,64 @@
   align-items: center;
 }
 
-/* menu */
-.main_menu {
+.left_menu {
   display: flex;
   color: #fff;
-  margin-top: 10px;
+  margin-top: 16px;
 }
 
-.main_menu li {
+.left_menu li {
   position: relative;
   padding: 5px 0; 
   margin: 0 15px;
-  font-weight: 400;
+  font-weight: 600;
+  font-size: 13px;
   transition: all 0.2s;
   cursor: pointer;
 }
 
-.main_menu li::before {
+.left_menu li::before {
   position: absolute;
   bottom: 5px;
   left: 50%;
-  height: 1px;
+  height: 2px;
   width: 0%;
   background: #fff;
   transition: .3s;
   content: "";
 } 
 
-.main_menu li:hover::before,
-.main_menu li.active::before {
+.left_menu li:hover::before,
+.left_menu li.active::before {
   left: 0;
   width: 100%;
 }
 
-/* user */
-.user_menu ul {
+.nav__right ul {
   display: flex;
   margin-top: 10px;
   transition: color .3s ease-in-out;
-
-}
-
-.user_menu ul.white {
-  color: #fff;
-}
-
-.user_menu ul.black {
   color: #191919;
 }
 
-.user_menu ul.active {
-  /* color: #fff; */
+.nav__right ul.white {
+  color: #fff;
 }
 
-.user_menu ul li {
+.nav__right ul.black {
+  color: #191919;
+}
+
+.nav__right ul li {
   position: relative;
   margin-left: 30px;
   cursor: pointer;
   padding: 5px 0;
+  font-weight: 600;
+  font-size: 13px;
 }
 
-.user_menu ul li::before {
+.nav__right ul li::before {
   position: absolute;
   bottom: 5px;
   left: 50%;
@@ -104,7 +101,7 @@
   content: "";
 } 
 
-.user_menu ul li:hover::before {
+.nav__right ul li:hover::before {
   left: 0;
   width: 100%;
 }
@@ -153,7 +150,7 @@
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 @media (max-width:900px) {
-  .user_menu ul li {
+  .nav__right ul li {
     color: #fff;
   }
 }
@@ -161,7 +158,7 @@
   .nav {
     backdrop-filter: blur(10px);
   }
-  .main_menu {
+  .left_menu {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -178,25 +175,24 @@
     z-index: 9999;
   }
 
-  .main_menu.active{
-    height: 200px;
+  .left_menu.active{
+    height: 150px;
   }
 
-  .main_menu li:nth-child(1) {
+  .left_menu li:nth-child(1) {
     display: block;
   }
 
-  .main_menu li {
-    font-size: 18px;
+  .left_menu li {
     padding: 10px;
     display: block;
   }
 
-  .main_menu li:hover {
+  .left_menu li:hover {
     color: #B89FA4;
   }
 
-  .main_menu li::before {
+  .left_menu li::before {
     display: none;
   }
 

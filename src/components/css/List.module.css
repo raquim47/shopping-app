@@ -1,21 +1,35 @@
 .list {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 40px;
+  min-height: 100vh;
+  margin-top: 10px;
+  font-family: "Montserrat";
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.list.mount {
+  opacity: 1;
 }
 
 .list li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 33.33%;
-  height: 500px;
+  width: calc((100% - 30px) / 4);
+  margin-right: 5px;
+  margin-left: 5px;
   cursor: pointer;
 }
 
+.list li:nth-child(4n + 1) {
+  margin-left: 0;
+}
+
+.list li:nth-child(4n) {
+  margin-right: 0;
+}
+
 .list__img {
-  width: 90%;
-  height: 400px;
+  width: 100%;
+  height: 350px;
   overflow: hidden;
 }
 
@@ -23,20 +37,43 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .list li:hover .product_img img {
   transform: scale(1.15);
 }
 
-.list h3 {
-  margin: 10px 0 0px;
-  width: 90%;
-  text-align: center;
-  font-size: 18px;
+.list__desc {
+  display: flex;
+  padding: 5px 8px 0;
+  height: 70px;
 }
 
-.list strong {
-  font-size: 18px;
+.list h3 {
+  width: 70%;
+  font-size: 13px;
+}
+
+.list small {
+  width: 30%;
+  text-align: right;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .list li {
+    width: calc((100% - 10px) / 2);
+    margin-right: 4px;
+    margin-left: 4px;
+    cursor: pointer;
+  }
+  
+  .list li:nth-child(2n + 1) {
+    margin-left: 0;
+  }
+  
+  .list li:nth-child(2n) {
+    margin-right: 0;
+  }
 }
