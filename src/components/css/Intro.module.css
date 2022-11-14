@@ -1,0 +1,82 @@
+.intro {
+  position: fixed;
+  top: 0%;
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  transition: .6s ease-in-out;
+  transition-delay: 1s;
+  z-index: 1000;
+}
+
+.intro.mount {
+  top: -100%;
+  background: #000;
+}
+
+.intro__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} 
+
+.intro__center div {
+  position: absolute;
+  transform: translate(-50%, -50%) scale(0%);
+  will-change: transform;
+}
+
+.intro__center.mount div {
+  transform: translate(-50%, -50%) scale(100%);
+}
+
+.intro__center img {
+  object-fit: cover;
+}
+
+.intro__img01 {
+  top: 50%;
+  left: 50%;
+  width: 15vw;
+  transition: .5s ease-in-out;
+}
+
+.intro__img02 {
+  left: -18vw;
+  width: 23vw;
+  transition: .5s ease-in-out;
+  transition-delay: .1s;
+}
+
+.intro__img03 {
+  top: -11vw;
+  left: 13vw;
+  width: 23vw;
+  transition: .5s ease-in-out;
+  transition-delay: .2s;
+}
+
+.intro__img04 {
+  top: 7vw;
+  left: 16vw;
+  width: 24vw;
+  transition: .5s ease-in-out;
+  transition-delay: .3s;
+}
+
+.intro__img05 {
+  top: -14vw;
+  left: -10vw;
+  width: 13vw;
+  transition: .5s ease-in-out;
+  transition-delay: .4s;
+}
+
+.intro__img06 {
+  top: 14vw;
+  left: -6vw;
+  width: 13vw;
+  transition: .5s ease-in-out;
+  transition-delay: .5s;
+}
