@@ -1,49 +1,59 @@
-.banner {
-  background: #F8F3EF;
+main {
+  position: relative;
   margin-top: 70px;
+  background: #F8F3EF;
   height: calc(100vh - 70px);
+  overflow: hidden;
+}
+
+.banner {
+  background: #ff0;
 }
 
 .banner__center {
   position: absolute;
   top: 50%;
   left: 50%;
+  margin-top: -5%;
   transform: translate(-50%, -50%);
-} 
+  background: #F8F3EF;
+}
+
 .banner__text {
   position: relative;
-  transform: translateY(10%);
   text-align: center;
-  text-transform: uppercase;
-  font-family: 'Playfair Display SC', serif;
-  
+  mix-blend-mode: difference;
   font-weight: 200;
-  color: #1A1A1A;
+  color: #fff;
   z-index: 100;
 }
 
 .banner__text div {
   position: relative;
   overflow: hidden;
-  background-blend-mode: difference;
 }
 
 .banner__text div span {
   display: block;
   white-space: nowrap;
   transform: translateY(100%);
+  text-transform: uppercase;
+  font-family: 'Playfair Display SC', serif;
   opacity: 0;
   font-size: 3.5vw;
-  transition: .5s ease-in;
+  transition: transform .5s ease-in;
   transition-delay: 1.2s;
-  
+
 }
+
 .banner__text div:nth-child(2) span {
   transition-delay: 1.4s;
 }
+
 .banner__text div:nth-child(3) span {
   transition-delay: 1.6s;
 }
+
 .banner__text div:nth-child(4) span {
   transition-delay: 1.8s;
 }
@@ -56,10 +66,60 @@
 .banner__img {
   position: absolute;
   object-fit: cover;
+  transform: scale(0%);
+  transition: transform .5s ease-in;
+  transition-delay: 1.8s;
+}
+
+.banner__img.mount {
+  transform: scale(100%);
 }
 
 .banner__img.img01 {
-  top: -3vw;
+  top: -1vw;
   left: -15vw;
   width: 20vw;
+}
+
+.banner__img.img02 {
+  top: -6vw;
+  left: 39vw;
+  width: 17vw;
+}
+
+.banner__img.img03 {
+  top: 18vw;
+  left: 16vw;
+  width: 22vw;
+}
+
+.footer_wrap {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+
+@media screen and (max-width:900px) {
+  .banner__center {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+@media screen and (max-width:767px) {
+  .banner__img.img01 {
+    width: 30vw;
+  }
+
+  .banner__img.img02 {
+    top: -24vw;
+    left: 30vw;
+    width: 25vw;
+  }
+
+  .banner__img.img03 {
+    top: 24vw;
+    left: 25vw;
+    width: 30vw;
+  }
 }
