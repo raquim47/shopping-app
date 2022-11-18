@@ -1,17 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./css/Detail.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useHistory, useParams } from "react-router-dom";
+import axios from "axios";
 
-const Detail = ({ setPage }) => {
-  const detailInfo = useSelector((state) => state.detailInfo);
+const Detail = () => {
+  const { gender, cate, id } = useParams();
+  const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
   const [size, setSize] = useState("");
   const navigate = useNavigate();
+
   useEffect(() => {
-    if (!detailInfo.title) {
-      navigate(`/men`);
-    }
+    axios
+      .get(`https://raquim47.github.io/data/cozy/json/${gender}_${cate}.json`)
+      .then((res) =>
+        setData(res.data.find((item) => item.id === parseInt(id)))
+      );
   }, []);
 
   const increaseCount = () => () => {
@@ -32,66 +36,70 @@ const Detail = ({ setPage }) => {
 
   return (
     <div className={styles.detail}>
-      <div className={styles.detail__inner}>
-        <section className={styles.detail__left}>
-          <img src={detailInfo.url}></img>
-        </section>
-        <section className={styles.detail__right}>
-          <form className={styles.order_form}>
-            <h3>{detailInfo.title}</h3>
-            {detailInfo.size && (
-              <div className={`${styles.order_form__option} ${styles.size}`}>
-                <h4>size</h4>
-                <ul>
-                  {detailInfo.size &&
-                    detailInfo.size.map((sizeItem) => (
-                      <li
-                        onClick={() => setSize(sizeItem)}
-                        className={size === sizeItem && styles.active}
-                        key={sizeItem}
-                      >
-                        {sizeItem}
-                      </li>
-                    ))}
-                </ul>
-              </div>
-            )}
-            <div className={styles.order_form__option}>
-              <h4>count</h4>
-              <div className={styles.count_input}>
-                <input
-                  type="text"
-                  value={count}
-                  onChange={(e) => {
-                    setCount(e.target.value);
-                  }}
-                />
-                <div className={styles.count_input__btn}>
-                  <div
-                    onClick={increaseCount()}
-                    className={styles.count_input__up}
-                  ></div>
-                  <div
-                    onClick={decreaseCount()}
-                    className={styles.count_input__down}
-                  ></div>
+      {
+        <div className={styles.detail__inner}>
+          <section className={styles.detail__left}>
+            <img src={data.url}></img>
+          </section>
+          <section className={styles.detail__right}>
+            <form className={styles.order_form}>
+              <h3>{data.title}</h3>
+              {data.size && (
+                <div className={`${styles.order_form__option} ${styles.size}`}>
+                  <h4>size</h4>
+                  <ul>
+                    {data.size &&
+                      data.size.map((sizeItem) => (
+                        <li
+                          onClick={() => setSize(sizeItem)}
+                          className={size === sizeItem ? styles.active : null}
+                          key={sizeItem}
+                        >
+                          {sizeItem}
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              )}
+              <div className={styles.order_form__option}>
+                <h4>count</h4>
+                <div className={styles.count_input}>
+                  <input
+                    type="text"
+                    value={count}
+                    onChange={(e) => {
+                      setCount(e.target.value);
+                    }}
+                  />
+                  <div className={styles.count_input__btn}>
+                    <div
+                      onClick={increaseCount()}
+                      className={styles.count_input__up}
+                    ></div>
+                    <div
+                      onClick={decreaseCount()}
+                      className={styles.count_input__down}
+                    ></div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={`${styles.order_form__option} ${styles.price}`}>
-              <h4>price</h4>
-              <span>$ {count > 0 && detailInfo.price * count}</span>
-            </div>
-            <button
-              type="submit"
-              onClick={(e) => onSubmitBtn(e)}
-              className={styles.order_form__submit_btn}
-            >
-              Add Cart
-            </button>
-          </form>
-        </section>
-      </div>
+              <div className={`${styles.order_form__option} ${styles.price}`}>
+                <h4>price</h4>
+                <span>$ {count > 0 && data.price * count}</span>
+              </div>
+              <button
+                type="submit"
+                onClick={(e) => onSubmitBtn(e)}
+                className={styles.order_form__submit_btn}
+              >
+                Add Cart
+              </button>
+              <div className={styles.detail__back} onClick={() => navigate(`/shop/${gender}`)}>←</div>
+            </form>
+            
+          </section>
+        </div>
+      }
     </div>
   );
 };

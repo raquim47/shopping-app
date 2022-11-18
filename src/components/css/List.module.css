@@ -5,11 +5,11 @@
   margin-top: 10px;
   font-family: "Montserrat";
   opacity: 0;
-  transition: all 0.5s ease-in-out;
 }
 
 .list.mount {
   opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .list li {

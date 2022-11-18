@@ -1,15 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./css/Main.module.css";
 import Intro from "./../components/Intro";
 import Footer from "./../components/Footer";
 
-const Main = ({ page, setPage }) => {
+const Main = () => {
   const [mount, setMount] = useState("");
 
   useEffect(() => {
     setTimeout(() => {
-      setPage("main");
-      // 메인 애니메이션 실행
       setMount("mount");
     }, 50); // 50ms 왜??
   }, []);
@@ -40,17 +38,17 @@ const Main = ({ page, setPage }) => {
           <div
             className={`${styles.banner__img} ${styles.img01} ${styles[mount]}`}
           >
-            <img src={process.env.PUBLIC_URL + "img/banner01.jpg"} />
+            <img src={process.env.PUBLIC_URL + "img/banner01.jpg"} alt="banner01"/>
           </div>
           <div
             className={`${styles.banner__img} ${styles.img02} ${styles[mount]}`}
           >
-            <img src={process.env.PUBLIC_URL + "img/banner02.jpg"} />
+            <img src={process.env.PUBLIC_URL + "img/banner02.jpg"} alt="banner02"/>
           </div>
           <div
             className={`${styles.banner__img} ${styles.img03} ${styles[mount]}`}
           >
-            <img src={process.env.PUBLIC_URL + "img/banner04.jpg"} />
+            <img src={process.env.PUBLIC_URL + "img/banner03.jpg"} alt="banner03"/>
           </div>
         </div>
       </div>

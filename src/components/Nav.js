@@ -7,23 +7,24 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./css/Nav.module.css";
 
-const Nav = ({ page, setPage }) => {
+const Nav = () => {
   const navigate = useNavigate();
-  const leftMenuList = ["men", "women", "cart", "login"];
+  const navList = ["men", "women", "cart", "login"];
   const menu = useRef();
   const hamburger = useRef();
-  const user = useRef();
 
-  const onClickLeftMenu = (navName) => () => {
+  const onClickNav = (navName) => () => {
     if (hamburger.current) {
       hamburger.current.classList.remove(`${styles.active}`);
       menu.current.classList.remove(`${styles.active}`);
     }
-    setPage(navName);
     hamburger.current.classList.remove(`${styles.active}`);
-    setTimeout(() => {
-      navigate(`/${navName}`);
-    }, 500);
+    
+    if (navName !== "cart" && navName !== "login") {
+      navigate(`shop/${navName}`);
+    } else {
+      navigate(`${navName}`);
+    }
   };
 
   const onClickHamburger = (target) => {
@@ -35,33 +36,23 @@ const Nav = ({ page, setPage }) => {
     <>
       <nav className={styles.nav}>
         <div className={styles.nav__inner}>
-          {/* 로고 */}
           <h1
             className={styles.logo}
             onClick={() => {
-              setPage("main");
-              setTimeout(() => {
-                navigate(`/`);
-              }, 400);
+              navigate(`/`);
             }}
           >
             Cozy
           </h1>
-          {/* 메뉴 */}
           <ul className={styles.nav__menu} ref={menu}>
-            {leftMenuList.map((leftMenuItem) => {
+            {navList.map((navItem) => {
               return (
-                <li
-                  key={leftMenuItem}
-                  onClick={onClickLeftMenu(leftMenuItem)}
-                  className={page === leftMenuItem ? `${styles.active}` : null}
-                >
-                  {leftMenuItem}
+                <li key={navItem} onClick={onClickNav(navItem)}>
+                  {navItem}
                 </li>
               );
             })}
           </ul>
-          {/* 햄버거 */}
           <div
             className={styles.hamburger}
             onClick={(e) => {

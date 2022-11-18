@@ -7,27 +7,33 @@ import { useEffect, useState } from "react";
 const List = ({ products }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [mountTransition, setMountTransition] = useState("");
+  const [mount, setMount] = useState("");
   useEffect(() => {
     setTimeout(() => {
-      setMountTransition("mount");
-    }, 100)
-  }, [])
+      setMount("mount");
+    }, 100);
+    return () => {
+      setMount("");
+    }
+  }, [products]);
   return (
-    <ul className={`${styles.list} ${styles[mountTransition]}`}>
+    <ul className={`${styles.list} ${styles[mount]}`}>
       {products &&
         products.map((product) => (
           <li
             key={product.id}
             onClick={() => {
               const data = {
+                id: product.id,
                 title: product.title,
                 price: product.price,
                 url: product.url,
                 size: product.size,
+                cate: product.cate,
+                gender: product.gender,
               };
               dispatch(setDetailInfo(data));
-              navigate(`/Detail`);
+              navigate(`/detail/${data.gender}/${data.cate}/${data.id}`);
             }}
           >
             <div className={styles.list__img}>

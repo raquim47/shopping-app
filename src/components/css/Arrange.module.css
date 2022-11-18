@@ -4,7 +4,7 @@
 
 .arrange li {
   margin-left: 15px;
-  color: rgba(255, 255, 255, 0.7);
+  color: #919191;
   cursor: pointer;
   font-size: 12px;
   font-family: 'Montserrat';
@@ -12,5 +12,5 @@
 
 .arrange li:hover,
 .arrange li.active {
-  color: #fff
+  color: #1a1a1a;
 }

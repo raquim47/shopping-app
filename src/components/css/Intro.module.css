@@ -4,13 +4,13 @@
   width: 100%;
   height: 100vh;
   background: #fff;
-  transition: transform .6s ease-in-out;
+  transition: top .6s ease-in-out;
   transition-delay: 1s;
   z-index: 1000;
 }
 
 .intro.mount {
-  top: -100%;
+  top: -100vh;
   background: #000;
 }
 
