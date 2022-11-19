@@ -1,0 +1,32 @@
+.page404 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: calc(100vh - 70px);
+  margin-top: 70px;
+  padding-bottom: 70px;
+  background: #F8F3EF;
+}
+
+.page404 h2 {
+  font-size: 120px;
+}
+
+.page404 h3 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.page404 p,
+.page404 button {
+  font-size: 16px;
+}
+
+.page404 button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #666;
+  color: #fff;
+  cursor: pointer;
+}

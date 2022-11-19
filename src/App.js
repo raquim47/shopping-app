@@ -7,15 +7,17 @@ import Shop from "./routes/Shop";
 import Detail from "./routes/Detail";
 // component
 import Nav from "./components/Nav";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   return (
     <div className="App">
       <Nav/>
       <Routes>
-        <Route path="/" element={<Main/>}></Route>
-        <Route path="/shop/:gender" element={<Shop />}></Route>
-        <Route path="/detail/:gender/:cate/:id" element={<Detail />}></Route>
+        <Route path="/" element={<Main/>} />
+        <Route path="/shop/:gender" element={<Shop />} />
+        <Route path="/detail/:gender/:cate/:id" element={<Detail />} />
+        <Route path="/*" element={<ErrorPage />} />
       </Routes>
     </div>
   );
