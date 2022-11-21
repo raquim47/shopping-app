@@ -15,9 +15,7 @@ const Detail = () => {
   useEffect(() => {
     axios
       .get(`https://raquim47.github.io/data/cozy/json/${gender}_${cate}.json`)
-      .then((res) =>
-        setData(res.data.find((item) => item.id === id))
-      );
+      .then((res) => setData(res.data.find((item) => item.id === id)));
   }, []);
 
   const increaseCount = () => () => {
@@ -29,7 +27,7 @@ const Detail = () => {
 
   const onClickAddCart = (e) => {
     e.preventDefault();
-    if (!size || count < 1) {
+    if (cate !== "accessory" && (!size || count < 1)) {
       alert("올바른 수량과 사이즈를 선택해주세요");
       return;
     }
@@ -39,10 +37,10 @@ const Detail = () => {
         gender: data.gender,
         cate: data.cate,
         title: data.title,
-        count: count,
-        size: size,
         price: data.price,
         url: data.url,
+        count: count,
+        size: size,
       })
     );
     navigate("/cart");

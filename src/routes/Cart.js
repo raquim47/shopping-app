@@ -39,7 +39,7 @@ const Cart = () => {
                     <div className={styles.product__option}>
                       <strong>{item.gender} &gt; {item.cate}</strong>
                       <h3>{item.title}</h3>
-                      <p>SIZE : {item.size}</p>
+                      {item.size && <p>SIZE : {item.size}</p>}
                       <span
                         className={styles.delete}
                         onClick={() => {
