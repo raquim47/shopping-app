@@ -10,8 +10,8 @@ const Detail = () => {
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
   const [size, setSize] = useState("");
-  
-  // const cartData = useSelector((state) => state.cartData);
+  const cartData = useSelector((state) => state.cartData);
+  console.log(cartData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {

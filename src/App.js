@@ -1,4 +1,8 @@
-import { Routes,Route,Link,useNavigate,Outlet } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { resetCart } from "./store";
+// import { useSelector } from 'react-redux';
 // css
 import "./reset.css";
 // route
@@ -11,11 +15,17 @@ import Nav from "./components/Nav";
 import ErrorPage from "./components/ErrorPage";
 
 function App() {
+  const dispatch = useDispatch();
+  // const cartData = useSelector((state) => state.cartData);
+  useEffect(() => {
+    const parsedLocalCart = JSON.parse(localStorage.getItem("cart"));
+    dispatch(resetCart(parsedLocalCart));
+  }, []);
   return (
     <div className="App">
-      <Nav/>
+      <Nav />
       <Routes>
-        <Route path="/" element={<Main/>} />
+        <Route path="/" element={<Main />} />
         <Route path="/shop/:gender" element={<Shop />} />
         <Route path="/detail/:gender/:cate/:id" element={<Detail />} />
         <Route path="/cart" element={<Cart />} />

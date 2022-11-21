@@ -15,7 +15,8 @@ const Cart = () => {
     .map((item) => item.price * item.count)
     .reduce((prev, curr) => prev + curr, 0);
   const onClickOrder = () => {
-    dispatch(resetCart());
+    alert("Your order has been completed");
+    dispatch(resetCart([]));
   };
   return (
     <div className={styles.cart}>

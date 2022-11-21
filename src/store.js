@@ -17,7 +17,9 @@ const findCartData = (state, action) => {
   return state.find(
     (a) => a.id === action.payload.id && a.size === action.payload.size)
 }
-
+const setLocalStorage = (state) => {
+  localStorage.setItem('cart', JSON.stringify(state));
+}
 const cartData = createSlice({
   name: "cartData",
   initialState: [],
@@ -29,28 +31,32 @@ const cartData = createSlice({
       } else {
         state.push(action.payload);
       }
+      setLocalStorage(state);
     },
     increaseCount(state, action) {
       const foundCartData = findCartData(state, action);
       if (foundCartData) {
         foundCartData.count++;
       }
+      setLocalStorage(state);
     },
     decreaseCount(state, action) {
-      console.log("hi")
       const foundCartData = findCartData(state, action);
       if (foundCartData && foundCartData.count > 1) {
         foundCartData.count--;
       }
+      setLocalStorage(state);
     },
     deleteCart(state, action) {
       const foundCartData = findCartData(state, action);
-      return state.filter((current) => current !== foundCartData);
+      const deletedCartData = state.filter((current) => current !== foundCartData);
+      setLocalStorage(deletedCartData);
+      return deletedCartData;
     },
 
-    resetCart(state) {
-      alert("Your order has been completed");
-      return state = [];
+    resetCart(state, action) {
+      setLocalStorage(action.payload);
+      return state = action.payload;
     },
   },
 });
