@@ -89,7 +89,6 @@
 }
 
 .count_input input {
-  outline: none;
   width: 100%;
   height: 100%;
   border: none;
@@ -136,6 +135,7 @@
   cursor: pointer;
   color: #c7c7c7;
 }
+
 @media screen and (max-width: 767px) {
   .detail__inner {
     display: flex;

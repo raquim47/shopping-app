@@ -8,6 +8,7 @@ const List = ({ products }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [mount, setMount] = useState("");
+  
   useEffect(() => {
     setTimeout(() => {
       setMount("mount");
@@ -16,6 +17,7 @@ const List = ({ products }) => {
       setMount("");
     }
   }, [products]);
+
   return (
     <ul className={`${styles.list} ${styles[mount]}`}>
       {products &&

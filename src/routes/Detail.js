@@ -1,20 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./css/Detail.module.css";
-import { useNavigate, useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { addCart } from "./../store";
+import { useDispatch, useSelector } from "react-redux";
 
 const Detail = () => {
   const { gender, cate, id } = useParams();
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
   const [size, setSize] = useState("");
+  
+  // const cartData = useSelector((state) => state.cartData);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
   useEffect(() => {
     axios
       .get(`https://raquim47.github.io/data/cozy/json/${gender}_${cate}.json`)
       .then((res) =>
-        setData(res.data.find((item) => item.id === parseInt(id)))
+        setData(res.data.find((item) => item.id === id))
       );
   }, []);
 
@@ -25,12 +29,22 @@ const Detail = () => {
     count > 1 && setCount((prev) => parseInt(prev) - 1);
   };
 
-  const onSubmitBtn = (e) => {
+  const onClickAddCart = (e) => {
     e.preventDefault();
     if (!size || count < 1) {
       alert("올바른 수량과 사이즈를 선택해주세요");
       return;
     }
+    dispatch(
+      addCart({
+        id: data.id,
+        title: data.title,
+        count: count,
+        size: size,
+        price: data.price,
+        url: data.url,
+      })
+    );
     navigate("/cart");
   };
 
@@ -88,15 +102,18 @@ const Detail = () => {
                 <span>$ {count > 0 && data.price * count}</span>
               </div>
               <button
-                type="submit"
-                onClick={(e) => onSubmitBtn(e)}
+                onClick={(e) => onClickAddCart(e)}
                 className={styles.order_form__submit_btn}
               >
                 Add Cart
               </button>
-              <div className={styles.detail__back} onClick={() => navigate(`/shop/${gender}`)}>←</div>
+              <div
+                className={styles.detail__back}
+                onClick={() => navigate(`/shop/${gender}`)}
+              >
+                ←
+              </div>
             </form>
-            
           </section>
         </div>
       }
