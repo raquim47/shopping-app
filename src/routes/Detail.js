@@ -3,15 +3,13 @@ import styles from "./css/Detail.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { addCart } from "./../store";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Detail = () => {
   const { gender, cate, id } = useParams();
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
   const [size, setSize] = useState("");
-  const cartData = useSelector((state) => state.cartData);
-  console.log(cartData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -38,6 +36,8 @@ const Detail = () => {
     dispatch(
       addCart({
         id: data.id,
+        gender: data.gender,
+        cate: data.cate,
         title: data.title,
         count: count,
         size: size,

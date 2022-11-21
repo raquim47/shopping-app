@@ -37,6 +37,7 @@ const Cart = () => {
                   <td className={styles.product__desc}>
                     <img src={item.url} />
                     <div className={styles.product__option}>
+                      <strong>{item.gender} &gt; {item.cate}</strong>
                       <h3>{item.title}</h3>
                       <p>SIZE : {item.size}</p>
                       <span
