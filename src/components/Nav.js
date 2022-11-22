@@ -14,12 +14,14 @@ const Nav = () => {
       menu.current.classList.remove(`${styles.active}`);
     }
     hamburger.current.classList.remove(`${styles.active}`);
-    
-    if (navName !== "cart" && navName !== "login") {
-      navigate(`shop/${navName}`);
-    } else {
-      navigate(`${navName}`);
-    }
+
+    setTimeout(() => {
+      if (navName !== "cart" && navName !== "login") {
+        navigate(`shop/${navName}`);
+      } else {
+        navigate(`${navName}`);
+      }
+    }, 10);
   };
 
   const onClickHamburger = (target) => {

@@ -9,7 +9,10 @@ import Nav from "./components/Nav";
 import ErrorPage from "./components/ErrorPage";
 // route
 import Main from "./routes/Main";
-const Shop = lazy( () => import('./routes/Shop') );
+// import Shop from "./routes/Shop";
+// import Detail from "./routes/Detail";
+// import Cart from "./routes/Cart";
+const Shop = lazy( () => import("./routes/Shop") );
 const Detail = lazy( () => import('./routes/Detail') );
 const Cart = lazy( () => import('./routes/Cart') );
 
@@ -17,13 +20,15 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     const parsedLocalCart = JSON.parse(localStorage.getItem("cart"));
-    dispatch(resetCart(parsedLocalCart));
+    parsedLocalCart
+      ? dispatch(resetCart(parsedLocalCart))
+      : localStorage.setItem("cart", JSON.stringify([]));
   }, []);
   return (
     <div className="App">
       <Nav />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route exact path="/" element={<Main />} />
         <Route path="/shop/:gender" element={<Shop />} />
         <Route path="/detail/:gender/:cate/:id" element={<Detail />} />
         <Route path="/cart" element={<Cart />} />
