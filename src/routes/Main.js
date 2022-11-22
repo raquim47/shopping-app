@@ -9,12 +9,8 @@ const Main = () => {
   useEffect(() => {
     setTimeout(() => {
       setMount("mount");
-    }, 50); // 50ms 왜??
+    }, 50);
   }, []);
-
-  // useEffect(() => {
-  //   page !== "main" && page !== "" && setUnmountTransition("unmount");
-  // }, [page]);
 
   return (
     <main>

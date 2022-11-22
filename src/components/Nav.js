@@ -1,15 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBagShopping,
-  // faMagnifyingGlass,
-} from "@fortawesome/free-solid-svg-icons";
 import styles from "./css/Nav.module.css";
 
 const Nav = () => {
   const navigate = useNavigate();
-  const navList = ["men", "women", "cart", "login"];
+  const navList = ["men", "women", "cart"];
   const menu = useRef();
   const hamburger = useRef();
 

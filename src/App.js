@@ -1,22 +1,20 @@
 import { Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
+import { lazy, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { resetCart } from "./store";
-// import { useSelector } from 'react-redux';
 // css
 import "./reset.css";
-// route
-import Main from "./routes/Main";
-import Shop from "./routes/Shop";
-import Detail from "./routes/Detail";
-import Cart from "./routes/Cart";
 // component
 import Nav from "./components/Nav";
 import ErrorPage from "./components/ErrorPage";
+// route
+import Main from "./routes/Main";
+const Shop = lazy( () => import('./routes/Shop') );
+const Detail = lazy( () => import('./routes/Detail') );
+const Cart = lazy( () => import('./routes/Cart') );
 
 function App() {
   const dispatch = useDispatch();
-  // const cartData = useSelector((state) => state.cartData);
   useEffect(() => {
     const parsedLocalCart = JSON.parse(localStorage.getItem("cart"));
     dispatch(resetCart(parsedLocalCart));
