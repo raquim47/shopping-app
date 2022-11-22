@@ -6,13 +6,14 @@
 ## Results
 [URL: https://raquim47.github.io/paintingApp]
 <div>
-  <h3>1. 메인</h3>
+  <h3>1. 메인 페이지</h3>
   
   <img width="90%" src="https://raw.githubusercontent.com/raquim47/data/main/cozy/img/cozy-readme1.gif" />
   
   <h4>1) useEffect, useState 훅을 활용한 마운트될 때 동작하는 애니메이션 </h4>
   <h4>2) useRef 훅을 활용한 DOM 요소 접근, 햄버거 버튼 애니메이션 구현 </h4>
-  
+  <hr/>
+
   <h3>2. shop 페이지</h3>
   
   <img width="90%" src="https://raw.githubusercontent.com/raquim47/data/main/cozy/img/cozy-readme2.gif" />
@@ -20,13 +21,15 @@
   <h4>1) 상품 탭, 상품 리스트, 정렬 버튼 등 독립적이고 재사용이 가능하도록 컴포넌트 분리</h4>
   <h4>2) useParams 훅으로 url 파라미터 활용</h4>
   <h4>3) axios 라이브러리를 활용하여 비동기로 상품 데이터 불러오기</h4>
-  
+  <hr/>
+
   <h3>3. detail 페이지</h3>
   
   <img width="90%" src="https://raw.githubusercontent.com/raquim47/data/main/cozy/img/cozy-readme3.gif" />
   
   <h4>1) 리덕스를 통한 상품 데이터 관리 </h4>
   <h4>2) useState 훅으로 사용자가 선택한 상품의 색상과 사이즈 정보 관리</h4>
+  <hr/>
   
   <h3>4. cart 페이지</h3>
   

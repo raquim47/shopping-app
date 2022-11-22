@@ -34,17 +34,17 @@ const Main = () => {
           <div
             className={`${styles.banner__img} ${styles.img01} ${styles[mount]}`}
           >
-            <img src={process.env.PUBLIC_URL + "img/banner01.jpg"} alt="banner01"/>
+            <img src={process.env.PUBLIC_URL + "/img/banner01.jpg"} alt="banner01"/>
           </div>
           <div
             className={`${styles.banner__img} ${styles.img02} ${styles[mount]}`}
           >
-            <img src={process.env.PUBLIC_URL + "img/banner02.jpg"} alt="banner02"/>
+            <img src={process.env.PUBLIC_URL + "/img/banner02.jpg"} alt="banner02"/>
           </div>
           <div
             className={`${styles.banner__img} ${styles.img03} ${styles[mount]}`}
           >
-            <img src={process.env.PUBLIC_URL + "img/banner03.jpg"} alt="banner03"/>
+            <img src={process.env.PUBLIC_URL + "/img/banner03.jpg"} alt="banner03"/>
           </div>
         </div>
       </div>
