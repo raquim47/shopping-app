@@ -43,7 +43,9 @@ const Detail = () => {
         size: size,
       })
     );
-    navigate("/cart");
+    setTimeout(() => {
+      navigate("/cart");
+    }, 50);
   };
 
   return (
@@ -107,7 +109,11 @@ const Detail = () => {
               </button>
               <div
                 className={styles.detail__back}
-                onClick={() => navigate(`/shop/${gender}`)}
+                onClick={() => {
+                  setTimeout(() => {
+                    navigate(`/shop/${gender}`);
+                  }, 50);
+                }}
               >
                 ←
               </div>

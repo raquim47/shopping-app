@@ -35,7 +35,10 @@ const List = ({ products }) => {
                 gender: product.gender,
               };
               dispatch(setDetailInfo(data));
-              navigate(`/detail/${data.gender}/${data.cate}/${data.id}`);
+              setTimeout(() => {
+                navigate(`/detail/${data.gender}/${data.cate}/${data.id}`);
+              }, 50)
+              
             }}
           >
             <div className={styles.list__img}>
