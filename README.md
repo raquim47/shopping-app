@@ -1,6 +1,5 @@
 # Shopping-App
 ## Shopping-App with REACT
-- 코딩애플 리액트 강의 수강 후 추가 기능을 구현.
 - HTML, CSS, JavaScript, React
 
 ## Results
